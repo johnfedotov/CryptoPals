@@ -30,11 +30,9 @@ def Challenge3():
 	# Single-byte XOR cipher
 	h="1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
 	s=""
-	# print(a)
 	a = bytes.fromhex(h)
 	c = Counter(a)
 	for byte in a:
-		# s+=chr(byte^c.most_common(1)[0][0])
 		s+=chr(byte^88)
 	print(s)
 
@@ -51,7 +49,6 @@ def Challenge4():
 				candidates.append((ch, xored))
 	f.close()
 	print(candidates)
-	# print(c.most_common(4))
 
 def Challenge5():
 	#  Implement repeating-key XOR 
@@ -67,7 +64,6 @@ def Challenge6():
 	# Break repeating-key XOR
 	f = open("6.txt","r")
 	ciphertext = ''.join([line.strip() for line in f.readlines()])
-	# print(ciphertext)
 	ct = base64.b64decode(ciphertext)
 	dists = list()
 	for keysize in range(2,40):
@@ -94,6 +90,7 @@ def Avg_Hamming_Dist(ct,size):
 	return sum(Hamming_Dist(c1,c2)/size for c1,c2 in zip(parts,parts[1:]))/len(parts[1:])
 
 def Challenge7():
+	# AES in ECB mode
 	f = open("7.txt","r")
 	ciphertext = ''.join([line.strip() for line in f.readlines()])
 	ct = base64.b64decode(ciphertext)
@@ -103,8 +100,8 @@ def Challenge7():
 	print(plain)
 
 def Challenge8():
+	# Detect AES in ECB mode
 	f = open("8.txt","r")	
-	# ciphers = [bytes.fromhex(line) for line in f.readlines()]
 	for line in f.readlines():
 		blocks = [line[i:i+16] for i in range(0,len(line)-16,16)]
 		for block in blocks:
@@ -112,4 +109,4 @@ def Challenge8():
 				print(line)
 				break
 
-Challenge8()
+Challenge1()
